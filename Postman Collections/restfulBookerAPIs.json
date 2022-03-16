@@ -1,0 +1,254 @@
+{
+  "info": {
+    "_postman_id": "18522141-a25f-4e70-8702-685a2de7364d",
+    "name": "Restful Booker Platform",
+    "schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Get Booking",
+      "item": [
+        {
+          "name": "Get room",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "4c28b9c4-c501-4c88-8a2e-7eb0b5570ea0",
+                "exec": [
+                  "// Validate status code\r",
+                  "pm.test(\"Status code is 200\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});\r",
+                  "\r",
+                  "// Validate array is not empty\r",
+                  "const jsonData = pm.response.json();\r",
+                  "pm.test(\"Test that array is not empty\", () => {\r",
+                  "  pm.expect(jsonData).to.not.be.empty;\r",
+                  "});\r",
+                  ""
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "_postman_id": "46f06f8b-af88-4dec-95f7-bf86ae7565f9",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseurl}}/booking"
+          },
+          "response": []
+        }
+      ],
+      "_postman_id": "e75f634d-c589-4ccd-8223-cec70a9167e7"
+    },
+    {
+      "name": "Create Booking",
+      "item": [
+        {
+          "name": "Book a room",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "47ac4ed0-2d79-4137-bf0e-25c61face166",
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});\r",
+                  "\r",
+                  "//Check that response contains a value\r",
+                  "pm.test(\"Response body contains string\", function () {\r",
+                  "    pm.expect(pm.response.text()).to.include(\"Toni\");\r",
+                  "    pm.expect(pm.response.text()).to.include(\"Robres\");\r",
+                  "});\r",
+                  "\r",
+                  "// Validate key value pair\r",
+                  "var test = pm.response.json();\r",
+                  "pm.test(\"verify page will be equal\", function(){\r",
+                  "    pm.expect(test.booking.bookingdates.checkin).to.eql(\"2019-01-01\");\r",
+                  "})\r",
+                  ""
+                ],
+                "type": "text/javascript"
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "463ce979-ffdf-4852-9e38-2c3e908d83ae",
+                "exec": [
+                  "var number = Math.floor(Math.random() * 100);\r",
+                  "\r",
+                  "var roomid = '1' + number;\r",
+                  "pm.environment.set(\"roomid\", roomid);"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "_postman_id": "c776e205-ffaa-49d5-9b69-ec54b9f9b7c9",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"firstname\": \"Toni\",\r\n  \"lastname\": \"Robres\",\r\n  \"totalprice\": 111,\r\n  \"depositpaid\": true,\r\n  \"bookingdates\": {\r\n    \"checkin\": \"2019-01-01\",\r\n    \"checkout\": \"2020-01-01\"\r\n  },\r\n  \"additionalneeds\": \"Breakfast\"\r\n}\r\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": "{{baseurl}}/booking/"
+          },
+          "response": []
+        },
+        {
+          "name": "Book a room with an already existing details",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "e5c03398-7b21-4f6d-b71a-5074fd3152dc",
+                "exec": [
+                  "pm.test(\"Status code is 409\", function () {\r",
+                  "    pm.response.to.have.status(409);\r",
+                  "\r",
+                  "});\r",
+                  ""
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "_postman_id": "e5741d58-da7a-48d5-81bb-ee4a3d1df5f7",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"bookingdates\": {\r\n        \"checkin\": \"2020-10-23\",\r\n        \"checkout\": \"2020-11-01\"\r\n    },\r\n    \"depositpaid\": false,\r\n    \"firstname\": \"Tomiuuu\",\r\n    \"lastname\": \"Onabajoi\",\r\n    \"roomid\": 5,\r\n    \"email\": \"tomibajooo@gmail.com\",\r\n    \"phone\": \"07068487635\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": "https://automationintesting.online/booking/"
+          },
+          "response": []
+        },
+        {
+          "name": "Book a room with a checkout date earlier than the check in date",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "2853696e-8447-4e7e-a6e2-0da5573e2a65",
+                "exec": [
+                  "pm.test(\"Status code is 400\", function () {\r",
+                  "    pm.response.to.have.status(400);\r",
+                  "pm.test(\"Tomi\", function () {\r",
+                  "    pm.expect(pm.response.text()).to.include(\"Tomi\");\r",
+                  "});\r",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "c3e1b4db-3fa1-4142-abfc-e45ae8f3a2e6",
+                "exec": [
+                  "var number = Math.floor(Math.random() * 100);\r",
+                  "\r",
+                  "var roomid = '1' + number;\r",
+                  "pm.environment.set(\"roomid\", roomid);"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "_postman_id": "ea8dbe6a-8a12-4e3c-bb30-921271951410",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"bookingdates\": {\r\n        \"checkin\": \"2020-11-13\",\r\n        \"checkout\": \"2020-11-01\"\r\n    },\r\n    \"depositpaid\": false,\r\n    \"firstname\": \"Tomiuuu\",\r\n    \"lastname\": \"Onabajoi\",\r\n    \"roomid\": {{roomid}},\r\n    \"email\": \"tomibajooo@gmail.com\",\r\n    \"phone\": \"07068487635\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": "https://automationintesting.online/booking/"
+          },
+          "response": []
+        }
+      ],
+      "_postman_id": "5c229264-c619-463a-98f0-aeb5b53a2253"
+    },
+    {
+      "name": "Get Token",
+      "item": [
+        {
+          "name": "Get token",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "d64e5360-90d5-4a45-a1c1-f968ba103955",
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "pm.test(\"Respone body has token\", function () {",
+                  "    pm.expect(pm.response.text()).to.include(\"token\");",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "_postman_id": "db591522-35c7-426a-ac10-7bd6b6089bf7",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"username\": \"admin\",\n  \"password\": \"password123\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": "{{baseurl}}/auth"
+          },
+          "response": []
+        }
+      ],
+      "_postman_id": "1477bdde-1e0b-4997-8fdf-8a8dc5bf7aa2"
+    }
+  ]
+}
