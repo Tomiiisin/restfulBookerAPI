@@ -32,7 +32,7 @@
               }
             }
           ],
-          "_postman_id": "46f06f8b-af88-4dec-95f7-bf86ae7565f9",
+          "id": "46f06f8b-af88-4dec-95f7-bf86ae7565f9",
           "protocolProfileBehavior": {
             "disableBodyPruning": true
           },
@@ -44,7 +44,7 @@
           "response": []
         }
       ],
-      "_postman_id": "e75f634d-c589-4ccd-8223-cec70a9167e7"
+      "id": "e75f634d-c589-4ccd-8223-cec70a9167e7"
     },
     {
       "name": "Create Booking",
@@ -91,7 +91,7 @@
               }
             }
           ],
-          "_postman_id": "c776e205-ffaa-49d5-9b69-ec54b9f9b7c9",
+          "id": "c776e205-ffaa-49d5-9b69-ec54b9f9b7c9",
           "protocolProfileBehavior": {
             "disableBodyPruning": true
           },
@@ -129,7 +129,7 @@
               }
             }
           ],
-          "_postman_id": "e5741d58-da7a-48d5-81bb-ee4a3d1df5f7",
+          "id": "e5741d58-da7a-48d5-81bb-ee4a3d1df5f7",
           "protocolProfileBehavior": {
             "disableBodyPruning": true
           },
@@ -181,7 +181,7 @@
               }
             }
           ],
-          "_postman_id": "ea8dbe6a-8a12-4e3c-bb30-921271951410",
+          "id": "ea8dbe6a-8a12-4e3c-bb30-921271951410",
           "protocolProfileBehavior": {
             "disableBodyPruning": true
           },
@@ -202,7 +202,7 @@
           "response": []
         }
       ],
-      "_postman_id": "5c229264-c619-463a-98f0-aeb5b53a2253"
+      "id": "5c229264-c619-463a-98f0-aeb5b53a2253"
     },
     {
       "name": "Get Token",
@@ -227,7 +227,7 @@
               }
             }
           ],
-          "_postman_id": "db591522-35c7-426a-ac10-7bd6b6089bf7",
+          "id": "db591522-35c7-426a-ac10-7bd6b6089bf7",
           "protocolProfileBehavior": {
             "disableBodyPruning": true
           },
@@ -248,7 +248,12 @@
           "response": []
         }
       ],
-      "_postman_id": "1477bdde-1e0b-4997-8fdf-8a8dc5bf7aa2"
+      "id": "1477bdde-1e0b-4997-8fdf-8a8dc5bf7aa2"
+    },
+    {
+      "name": "New Folder",
+      "item": [],
+      "id": "664eb522-febb-4de6-aca5-69bf9c602626"
     }
   ]
 }
