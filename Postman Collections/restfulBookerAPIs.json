@@ -250,5 +250,35 @@
       ],
       "id": "1477bdde-1e0b-4997-8fdf-8a8dc5bf7aa2"
     }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "id": "7dde12a6-0031-42f2-bfaa-4e4530af5351",
+        "type": "text/javascript",
+        "exec": [
+          ""
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "id": "a3c391e7-f528-44f6-9dad-74e6fcdbf30d",
+        "type": "text/javascript",
+        "exec": [
+          ""
+        ]
+      }
+    }
+  ],
+  "variable": [
+    {
+      "id": "f1887bf2-5126-4ef6-b0e7-7ce0ac5232f5",
+      "key": "baseurl",
+      "value": "https://restful-booker.herokuapp.com",
+      "type": "string"
+    }
   ]
 }
